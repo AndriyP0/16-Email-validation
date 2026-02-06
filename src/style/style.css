@@ -8,16 +8,17 @@ body {
 /* Form container */
 #person {
   max-width: 400px;
-  margin: 0 auto;
+  margin: auto;
   background: #ffffff;
-  padding: 20px 25px;
+  padding:  30px;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Each row */
 #person div {
-  margin-bottom: 15px;
+  margin: 15px 0;
+
 }
 
 /* Labels */
@@ -28,7 +29,7 @@ body {
 }
 
 /* Inputs */
-#person input[type="text"] {
+#person input {
   width: 100%;
   padding: 8px 10px;
   border: 3px solid #ccc;
@@ -65,5 +66,3 @@ body {
 #btn-container button:hover {
   opacity: 0.9;
 }
-
-i
