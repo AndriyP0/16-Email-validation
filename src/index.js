@@ -1,37 +1,25 @@
-'use strict';
+"use strict";
+
+const btn = document.querySelector("#btn-container button[type=submit]");
+const collectionProps = Array.from(document.querySelectorAll("#person input"));
 
 class Person {
-  constructor(data) {
-    Object.assign(this, data);
+  constructor(...args) {
+    args.forEach(({ name, value }) => (this[name] = value));
   }
 }
-
-const form = document.querySelector('#person');
-
-form.addEventListener('submit', handleSubmit);
-
-function handleSubmit(event) {
+function collectPropsFromForm(event) {
   event.preventDefault();
-
-  const formData = new FormData(form);
-  const personData = {};
-
-  for (const [key, value] of formData.entries()) {
-    // если в будущем появятся пароли — просто исключим
-    if (!key.toLowerCase().includes('password')) {
-      personData[key] = value;
-    }
-  }
-
-  const person = new Person(personData);
-
-  if (!person.lastName) {
-    console.log('Last name is required');
-    return;
-  }
-
-  localStorage.setItem(person.lastName, JSON.stringify(person));
-
-  console.log('Saved person:', person);
-  form.reset();
+  const person = new Person(...collectionProps);
+  const jsonPerson = JSON.stringify(
+    person,
+    (key, value) => {
+      return key === "password" ? undefined : value;
+    },
+    2,
+  );
+  console.log(jsonPerson);
+  localStorage.setItem(`${person.lastName}`, jsonPerson);
+  console.log(JSON.parse(localStorage.getItem(`${person.lastName}`)));
 }
+btn.addEventListener("click", collectPropsFromForm);

@@ -37,6 +37,22 @@ body {
   font-size: 14px;
 }
 
+/* Error messages */
+.div-error {
+  border: 1px solid red;
+  color: red;
+  font-size: 12px;;
+}
+.div-error p {
+  margin: 5px;
+}
+.error-email-visi {
+  display: block;
+}
+.error-email-novisi{
+  display: none;
+}
+
 /* Buttons container */
 #btn-container {
   display: flex;
